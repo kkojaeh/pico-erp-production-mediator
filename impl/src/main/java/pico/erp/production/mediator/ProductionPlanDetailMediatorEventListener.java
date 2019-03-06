@@ -51,7 +51,7 @@ public class ProductionPlanDetailMediatorEventListener {
   @JmsListener(destination = LISTENER_NAME + "."
     + OutsourcedInvoiceEvents.CanceledEvent.CHANNEL)
   public void onOutsourcedInvoiceCanceled(OutsourcedInvoiceEvents.CanceledEvent event) {
-    recreate(event.getId().getValue());
+    recreateIfNotCanceled(event.getId().getValue());
   }
 
   @EventListener
@@ -94,7 +94,7 @@ public class ProductionPlanDetailMediatorEventListener {
   @JmsListener(destination = LISTENER_NAME + "."
     + OutsourcingRequestEvents.CanceledEvent.CHANNEL)
   public void onOutsourcingRequestCanceled(OutsourcingRequestEvents.CanceledEvent event) {
-    recreate(event.getId().getValue());
+    recreateIfNotCanceled(event.getId().getValue());
   }
 
   @EventListener
@@ -115,7 +115,7 @@ public class ProductionPlanDetailMediatorEventListener {
   @JmsListener(destination = LISTENER_NAME + "."
     + ProductionOrderEvents.CanceledEvent.CHANNEL)
   public void onProductionOrderCanceled(ProductionOrderEvents.CanceledEvent event) {
-    recreate(event.getId().getValue());
+    recreateIfNotCanceled(event.getId().getValue());
   }
 
   @EventListener
@@ -147,7 +147,7 @@ public class ProductionPlanDetailMediatorEventListener {
   @JmsListener(destination = LISTENER_NAME + "."
     + PurchaseRequestEvents.CanceledEvent.CHANNEL)
   public void onPurchaseRequestCanceled(PurchaseRequestEvents.CanceledEvent event) {
-    recreate(event.getId().getValue());
+    recreateIfNotCanceled(event.getId().getValue());
   }
 
   @EventListener
@@ -176,14 +176,17 @@ public class ProductionPlanDetailMediatorEventListener {
     }
   }
 
-  protected void recreate(UUID linkedId) {
+  protected void recreateIfNotCanceled(UUID linkedId) {
     val exists = productionPlanMediatorService.exists(linkedId);
     if (exists) {
-      productionPlanMediatorService.recreate(
-        ProductionPlanMediatorRequests.RecreateRequest.builder()
-          .linkedId(linkedId)
-          .build()
-      );
+      val mediator = productionPlanMediatorService.get(linkedId);
+      if (!mediator.isCanceled()) {
+        productionPlanMediatorService.recreate(
+          ProductionPlanMediatorRequests.RecreateRequest.builder()
+            .linkedId(linkedId)
+            .build()
+        );
+      }
     }
   }
 }

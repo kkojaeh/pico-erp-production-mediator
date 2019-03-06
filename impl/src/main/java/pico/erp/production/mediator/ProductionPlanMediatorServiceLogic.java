@@ -176,6 +176,13 @@ public class ProductionPlanMediatorServiceLogic implements ProductionPlanMediato
   }
 
   @Override
+  public ProductionPlanDetailMediatorData get(UUID linkedId) {
+    val mediator = productionPlanDetailMediatorRepository.findBy(linkedId)
+      .orElseThrow(ProductionPlanMediatorExceptions.NotFoundException::new);
+    return mapper.map(mediator);
+  }
+
+  @Override
   public void progress(ProgressRequest request) {
     val mediator = productionPlanDetailMediatorRepository.findBy(request.getLinkedId())
       .orElseThrow(ProductionPlanMediatorExceptions.NotFoundException::new);

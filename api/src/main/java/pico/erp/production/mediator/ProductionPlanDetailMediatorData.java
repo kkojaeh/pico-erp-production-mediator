@@ -11,4 +11,6 @@ public class ProductionPlanDetailMediatorData {
 
   UUID linkedId;
 
+  boolean canceled;
+
 }

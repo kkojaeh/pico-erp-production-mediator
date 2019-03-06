@@ -17,6 +17,8 @@ public interface ProductionPlanMediatorService {
 
   ProductionPlanDetailMediatorData get(@Valid @NotNull ProductionPlanDetailId id);
 
+  ProductionPlanDetailMediatorData get(@Valid @NotNull UUID linkedId);
+
   void progress(@Valid @NotNull ProductionPlanMediatorRequests.ProgressRequest request);
 
   void recreate(@Valid @NotNull ProductionPlanMediatorRequests.RecreateRequest request);

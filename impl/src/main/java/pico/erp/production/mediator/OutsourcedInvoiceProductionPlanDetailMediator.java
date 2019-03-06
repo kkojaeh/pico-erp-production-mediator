@@ -100,4 +100,5 @@ public class OutsourcedInvoiceProductionPlanDetailMediator implements Production
   public boolean isCancelable() {
     return outsourcedInvoice.isCancelable();
   }
+
 }

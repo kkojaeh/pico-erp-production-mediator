@@ -9,6 +9,7 @@ import pico.erp.production.mediator.ProductionPlanDetailMediatorMessages.Create;
 import pico.erp.production.mediator.ProductionPlanDetailMediatorMessages.Progress;
 import pico.erp.production.plan.detail.ProductionPlanDetailData;
 import pico.erp.production.plan.detail.ProductionPlanDetailRequests;
+import pico.erp.production.plan.detail.ProductionPlanDetailStatusKind;
 
 public interface ProductionPlanDetailMediator extends Serializable {
 
@@ -45,5 +46,9 @@ public interface ProductionPlanDetailMediator extends Serializable {
   ProductionPlanDetailData getProductionPlanDetail();
 
   boolean isCancelable();
+
+  default boolean isCanceled() {
+    return getProductionPlanDetail().getStatus() == ProductionPlanDetailStatusKind.CANCELED;
+  }
 
 }
