@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: "net.ltgt.apt"
+apply plugin: 'net.ltgt.apt-idea'
+
+apply from: 'https://rawgit.com/kkojaeh/pico-erp-gradle/master/api.gradle'
+
+dependencies {
+
+  compile("com.github.kkojaeh.pico-erp-shared:api:${sharedVersion}")
+
+  compile("com.github.kkojaeh.pico-erp-production-plan:api:${productionPlanVersion}")
+
+  compile("com.github.kkojaeh.pico-erp-outsourced-invoice:api:${outsourcedInvoiceVersion}")
+
+  compile("com.github.kkojaeh.pico-erp-purchase-request:api:${purchaseRequestVersion}")
+
+  compile("com.github.kkojaeh.pico-erp-outsourcing-request:api:${outsourcingRequestVersion}")
+
+  compile("com.github.kkojaeh.pico-erp-production-order:api:${productionOrderVersion}")
+
+}
