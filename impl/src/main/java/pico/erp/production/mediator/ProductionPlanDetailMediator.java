@@ -3,6 +3,8 @@ package pico.erp.production.mediator;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+import lombok.SneakyThrows;
 import pico.erp.production.mediator.ProductionPlanDetailMediatorMessages.Cancel;
 import pico.erp.production.mediator.ProductionPlanDetailMediatorMessages.Complete;
 import pico.erp.production.mediator.ProductionPlanDetailMediatorMessages.Create;
@@ -29,7 +31,9 @@ public interface ProductionPlanDetailMediator extends Serializable {
     );
   }
 
+  @SneakyThrows
   default Complete.Response apply(Complete.Request request) {
+    TimeUnit.MILLISECONDS.sleep(1000);
     request.getContext().getProductionPlanDetailService().complete(
       ProductionPlanDetailRequests.CompleteRequest.builder()
         .id(getProductionPlanDetail().getId())
