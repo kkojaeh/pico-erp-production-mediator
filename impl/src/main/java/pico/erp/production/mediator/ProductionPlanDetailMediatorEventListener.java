@@ -164,6 +164,17 @@ public class ProductionPlanDetailMediatorEventListener {
     progress(event.getId().getValue(), event.getQuantity());
   }
 
+  @EventListener
+  @JmsListener(destination = LISTENER_NAME + "."
+    + ProductionPlanEvents.DeterminedEvent.CHANNEL)
+  public void onProductionPlanDetermined(ProductionPlanEvents.DeterminedEvent event) {
+    productionPlanMediatorService.create(
+      ProductionPlanMediatorRequests.CreateRequest.builder()
+        .id(event.getId())
+        .build()
+    );
+  }
+
   protected void progress(UUID linkedId, BigDecimal quantity) {
     val exists = productionPlanMediatorService.exists(linkedId);
     if (exists) {
