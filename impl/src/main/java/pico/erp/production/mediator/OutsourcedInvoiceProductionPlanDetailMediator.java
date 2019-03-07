@@ -74,6 +74,12 @@ public class OutsourcedInvoiceProductionPlanDetailMediator implements Production
       OutsourcedInvoiceItemRequests.CreateRequest.from(outsourcedInvoiceItem)
     );
 
+    request.getContext().getOutsourcedInvoiceService().determine(
+      OutsourcedInvoiceRequests.DetermineRequest.builder()
+        .id(outsourcedInvoiceId)
+        .build()
+    );
+
     return new ProductionPlanDetailMediatorMessages.Create.Response(
       Collections.emptyList()
     );

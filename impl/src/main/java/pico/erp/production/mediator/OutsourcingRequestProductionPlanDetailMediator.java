@@ -83,13 +83,27 @@ public class OutsourcingRequestProductionPlanDetailMediator implements
     })
       .collect(Collectors.toList());
 
+    val createRequest = OutsourcingRequestRequests.CreateRequest.from(outsourcingRequest);
+    createRequest.setMaterialsManually(true);
     request.getContext().getOutsourcingRequestService().create(
-      OutsourcingRequestRequests.CreateRequest.from(outsourcingRequest)
+      createRequest
     );
     outsourcingRequestMaterials.forEach(material ->
       request.getContext().getOutsourcingRequestMaterialService().create(
         OutsourcingRequestMaterialRequests.CreateRequest.from(material)
       )
+    );
+    request.getContext().getOutsourcingRequestService().commit(
+      OutsourcingRequestRequests.CommitRequest.builder()
+        .id(outsourcingRequestId)
+        .committerId(plan.getPlannerId())
+        .build()
+    );
+    request.getContext().getOutsourcingRequestService().accept(
+      OutsourcingRequestRequests.AcceptRequest.builder()
+        .id(outsourcingRequestId)
+        .accepterId(plan.getPlannerId())
+        .build()
     );
     return new ProductionPlanDetailMediatorMessages.Create.Response(
       Collections.emptyList()

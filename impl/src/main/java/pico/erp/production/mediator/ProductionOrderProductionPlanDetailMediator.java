@@ -59,6 +59,12 @@ public class ProductionOrderProductionPlanDetailMediator implements ProductionPl
     request.getContext().getProductionOrderService().create(
       ProductionOrderRequests.CreateRequest.from(productionOrder)
     );
+    request.getContext().getProductionOrderService().commit(
+      ProductionOrderRequests.CommitRequest.builder()
+        .id(productionOrderId)
+        .committerId(plan.getPlannerId())
+        .build()
+    );
     return new Create.Response(
       Collections.emptyList()
     );

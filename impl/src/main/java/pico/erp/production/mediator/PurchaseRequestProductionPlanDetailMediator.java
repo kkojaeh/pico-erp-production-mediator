@@ -59,6 +59,18 @@ public class PurchaseRequestProductionPlanDetailMediator implements ProductionPl
     request.getContext().getPurchaseRequestService().create(
       PurchaseRequestRequests.CreateRequest.from(purchaseRequest)
     );
+    request.getContext().getPurchaseRequestService().commit(
+      PurchaseRequestRequests.CommitRequest.builder()
+        .id(purchaseRequestId)
+        .committerId(plan.getPlannerId())
+        .build()
+    );
+    request.getContext().getPurchaseRequestService().accept(
+      PurchaseRequestRequests.AcceptRequest.builder()
+        .id(purchaseRequestId)
+        .accepterId(plan.getPlannerId())
+        .build()
+    );
 
     return new ProductionPlanDetailMediatorMessages.Create.Response(
       Collections.emptyList()
