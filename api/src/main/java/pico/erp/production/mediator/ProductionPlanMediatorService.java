@@ -21,6 +21,8 @@ public interface ProductionPlanMediatorService {
 
   void progress(@Valid @NotNull ProductionPlanMediatorRequests.ProgressRequest request);
 
+  void prepare(@Valid @NotNull ProductionPlanMediatorRequests.PrepareRequest request);
+
   void recreate(@Valid @NotNull ProductionPlanMediatorRequests.RecreateRequest request);
 
 }

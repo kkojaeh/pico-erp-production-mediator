@@ -13,6 +13,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.val;
 import pico.erp.production.mediator.ProductionPlanDetailMediatorMessages.Cancel;
 import pico.erp.production.mediator.ProductionPlanDetailMediatorMessages.Create;
+import pico.erp.production.mediator.ProductionPlanDetailMediatorMessages.Prepare;
 import pico.erp.production.order.ProductionOrderData;
 import pico.erp.production.order.ProductionOrderId;
 import pico.erp.production.order.ProductionOrderRequests;
@@ -79,6 +80,18 @@ public class ProductionOrderProductionPlanDetailMediator implements ProductionPl
         .build()
     );
     return new Cancel.Response(
+      Collections.emptyList()
+    );
+  }
+
+  @Override
+  public Prepare.Response apply(Prepare.Request request) {
+    request.getContext().getProductionOrderService().prepare(
+      ProductionOrderRequests.PrepareRequest.builder()
+        .id(productionOrder.getId())
+        .build()
+    );
+    return new Prepare.Response(
       Collections.emptyList()
     );
   }

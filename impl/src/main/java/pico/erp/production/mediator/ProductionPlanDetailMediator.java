@@ -8,6 +8,7 @@ import lombok.SneakyThrows;
 import pico.erp.production.mediator.ProductionPlanDetailMediatorMessages.Cancel;
 import pico.erp.production.mediator.ProductionPlanDetailMediatorMessages.Complete;
 import pico.erp.production.mediator.ProductionPlanDetailMediatorMessages.Create;
+import pico.erp.production.mediator.ProductionPlanDetailMediatorMessages.Prepare;
 import pico.erp.production.mediator.ProductionPlanDetailMediatorMessages.Progress;
 import pico.erp.production.plan.detail.ProductionPlanDetailData;
 import pico.erp.production.plan.detail.ProductionPlanDetailRequests;
@@ -40,6 +41,13 @@ public interface ProductionPlanDetailMediator extends Serializable {
         .build()
     );
     return new Complete.Response(
+      Collections.emptyList()
+    );
+  }
+
+  @SneakyThrows
+  default Prepare.Response apply(Prepare.Request request) {
+    return new Prepare.Response(
       Collections.emptyList()
     );
   }

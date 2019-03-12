@@ -16,6 +16,7 @@ import pico.erp.outsourced.invoice.item.OutsourcedInvoiceItemService;
 import pico.erp.outsourcing.request.OutsourcingRequestEvents;
 import pico.erp.production.order.ProductionOrderEvents;
 import pico.erp.production.plan.ProductionPlanEvents;
+import pico.erp.production.plan.detail.ProductionPlanDetailEvents;
 import pico.erp.purchase.request.PurchaseRequestEvents;
 
 @SuppressWarnings("unused")
@@ -170,6 +171,18 @@ public class ProductionPlanDetailMediatorEventListener {
   public void onProductionPlanDetermined(ProductionPlanEvents.DeterminedEvent event) {
     productionPlanMediatorService.create(
       ProductionPlanMediatorRequests.CreateRequest.builder()
+        .id(event.getId())
+        .build()
+    );
+  }
+
+  @EventListener
+  @JmsListener(destination = LISTENER_NAME + "."
+    + ProductionPlanDetailEvents.DependenciesCompletedEvent.CHANNEL)
+  public void onProductionPlanDetailDependenciesCompleted(
+    ProductionPlanDetailEvents.DependenciesCompletedEvent event) {
+    productionPlanMediatorService.prepare(
+      ProductionPlanMediatorRequests.PrepareRequest.builder()
         .id(event.getId())
         .build()
     );

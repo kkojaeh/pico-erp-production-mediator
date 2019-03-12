@@ -115,6 +115,25 @@ public interface ProductionPlanDetailMediatorMessages {
     }
   }
 
+  interface Prepare {
+
+    @Data
+    @Builder
+    class Request {
+
+      @NotNull
+      ProductionPlanDetailContext context;
+
+    }
+
+    @Value
+    class Response {
+
+      Collection<Event> events;
+
+    }
+  }
+
   @Getter
   @Component
   class ProductionPlanDetailContext {

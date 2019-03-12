@@ -12,11 +12,13 @@ import pico.erp.company.CompanyService;
 import pico.erp.company.address.CompanyAddressService;
 import pico.erp.production.mediator.ProductionPlanDetailMediatorMessages.Complete;
 import pico.erp.production.mediator.ProductionPlanDetailMediatorMessages.Create;
+import pico.erp.production.mediator.ProductionPlanDetailMediatorMessages.Prepare;
 import pico.erp.production.mediator.ProductionPlanDetailMediatorMessages.ProductionPlanDetailContext;
 import pico.erp.production.mediator.ProductionPlanDetailMediatorMessages.Progress;
 import pico.erp.production.mediator.ProductionPlanMediatorRequests.CancelRequest;
 import pico.erp.production.mediator.ProductionPlanMediatorRequests.CompleteRequest;
 import pico.erp.production.mediator.ProductionPlanMediatorRequests.CreateRequest;
+import pico.erp.production.mediator.ProductionPlanMediatorRequests.PrepareRequest;
 import pico.erp.production.mediator.ProductionPlanMediatorRequests.ProgressRequest;
 import pico.erp.production.mediator.ProductionPlanMediatorRequests.RecreateRequest;
 import pico.erp.production.plan.ProductionPlanService;
@@ -189,6 +191,17 @@ public class ProductionPlanMediatorServiceLogic implements ProductionPlanMediato
     val message = Progress.Request.builder()
       .context(context)
       .progressQuantity(request.getProgressQuantity())
+      .build();
+    val response = mediator.apply(message);
+    eventPublisher.publishEvents(response.getEvents());
+  }
+
+  @Override
+  public void prepare(PrepareRequest request) {
+    val mediator = productionPlanDetailMediatorRepository.findBy(request.getId())
+      .orElseThrow(ProductionPlanMediatorExceptions.NotFoundException::new);
+    val message = Prepare.Request.builder()
+      .context(context)
       .build();
     val response = mediator.apply(message);
     eventPublisher.publishEvents(response.getEvents());

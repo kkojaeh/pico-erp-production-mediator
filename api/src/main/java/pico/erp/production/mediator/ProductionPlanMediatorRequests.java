@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pico.erp.production.plan.ProductionPlanId;
+import pico.erp.production.plan.detail.ProductionPlanDetailId;
 
 public interface ProductionPlanMediatorRequests {
 
@@ -72,6 +73,18 @@ public interface ProductionPlanMediatorRequests {
     @Valid
     @NotNull
     UUID linkedId;
+
+  }
+
+  @Data
+  @NoArgsConstructor
+  @AllArgsConstructor
+  @Builder
+  class PrepareRequest {
+
+    @Valid
+    @NotNull
+    ProductionPlanDetailId id;
 
   }
 
