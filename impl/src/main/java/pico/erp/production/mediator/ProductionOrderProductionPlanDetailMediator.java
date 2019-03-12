@@ -54,6 +54,7 @@ public class ProductionOrderProductionPlanDetailMediator implements ProductionPl
       .receiverId(productionPlanDetail.getReceiverId())
       .remark(null)
       .ordererId(plan.getPlannerId())
+      .estimatedPreparedDate(productionPlanDetail.getStartDate())
       .build();
 
     request.getContext().getProductionOrderService().create(
