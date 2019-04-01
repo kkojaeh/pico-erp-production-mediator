@@ -1,29 +1,44 @@
 package pico.erp.production.mediator
 
+import kkojaeh.spring.boot.component.SpringBootTestComponent
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.context.annotation.ComponentScan
-import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Lazy
 import org.springframework.test.annotation.Rollback
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.transaction.annotation.Transactional
+import pico.erp.bom.BomApplication
+import pico.erp.company.CompanyApplication
 import pico.erp.company.CompanyId
+import pico.erp.invoice.InvoiceApplication
+import pico.erp.item.ItemApplication
 import pico.erp.item.ItemService
+import pico.erp.outsourced.invoice.OutsourcedInvoiceApplication
+import pico.erp.outsourcing.request.OutsourcingRequestApplication
+import pico.erp.process.ProcessApplication
 import pico.erp.process.ProcessService
+import pico.erp.production.order.ProductionOrderApplication
+import pico.erp.production.plan.ProductionPlanApplication
 import pico.erp.production.plan.ProductionPlanId
 import pico.erp.production.plan.detail.ProductionPlanDetailProgressTypeKind
 import pico.erp.production.plan.detail.ProductionPlanDetailRequests
 import pico.erp.production.plan.detail.ProductionPlanDetailService
-import pico.erp.shared.IntegrationConfiguration
+import pico.erp.project.ProjectApplication
+import pico.erp.purchase.request.PurchaseRequestApplication
+import pico.erp.shared.TestParentApplication
+import pico.erp.user.UserApplication
+import pico.erp.warehouse.WarehouseApplication
 import spock.lang.Specification
 
-@SpringBootTest(classes = [IntegrationConfiguration])
+@SpringBootTest(classes = [ProductionMediatorApplication, TestConfig])
+@SpringBootTestComponent(parent = TestParentApplication, siblings = [
+  UserApplication, ItemApplication, ProjectApplication, ProcessApplication, CompanyApplication, BomApplication,
+  ProductionOrderApplication, ProductionPlanApplication, OutsourcingRequestApplication, PurchaseRequestApplication,
+  OutsourcedInvoiceApplication, WarehouseApplication, InvoiceApplication
+])
 @Transactional
 @Rollback
 @ActiveProfiles("test")
-@Configuration
-@ComponentScan("pico.erp.config")
 class ProductionPlanMediatorServiceSpec extends Specification {
 
   @Lazy

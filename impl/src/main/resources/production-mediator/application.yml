@@ -1,7 +1,8 @@
-banner:
-  location: classpath:production-mediator/banner.txt
-
 spring:
+  jmx:
+    default-domain: production-mediator
+  banner:
+    location: classpath:production-mediator/banner.txt
   application:
     name: pico-production-mediator
   session:
@@ -11,12 +12,15 @@ spring:
     basename: production-mediator-messages
     encoding: UTF-8
   datasource:
+    name: production-mediator-datasource
     url: ${PRDOCUTION_MEDIATOR_DATASOURCE_URL:${DATASOURCE_URL:jdbc:p6spy:hsqldb:mem:production-mediator}}
     driver-class-name: ${PRDOCUTION_MEDIATOR_DATASOURCE_DRIVER_CLASS_NAME:${DATASOURCE_DRIVER_CLASS_NAME:com.p6spy.engine.spy.P6SpyDriver}}
     username: ${PRDOCUTION_MEDIATOR_DATASOURCE_USERNAME:${DATASOURCE_USERNAME:as}}
     password: ${PRDOCUTION_MEDIATOR_DATASOURCE_PASSWORD:${DATASOURCE_PASSWORD:null}}
     hikari:
       maximum-pool-size: 4
+  flyway:
+    enabled: false
   jpa:
     database: HSQL
     hibernate:
@@ -82,11 +86,3 @@ logging:
   level:
     org:
       springframework: INFO
-
-flyway:
-  enabled: false
-
-production-mediator:
-  accepter-group:
-    id: pr-accepter
-    name: 구매요청 접수자
