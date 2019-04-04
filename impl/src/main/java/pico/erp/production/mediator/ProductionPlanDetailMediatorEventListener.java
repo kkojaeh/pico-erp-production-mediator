@@ -2,7 +2,7 @@ package pico.erp.production.mediator;
 
 import java.math.BigDecimal;
 import java.util.UUID;
-import kkojaeh.spring.boot.component.Take;
+import kkojaeh.spring.boot.component.ComponentAutowired;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
@@ -25,13 +25,13 @@ public class ProductionPlanDetailMediatorEventListener {
 
   private static final String LISTENER_NAME = "listener.production-plan-detail-mediator-event-listener";
 
-  @Take
+  @ComponentAutowired
   protected OutsourcedInvoiceService outsourcedInvoiceService;
 
   @Autowired
   protected ProductionPlanMediatorService productionPlanMediatorService;
 
-  @Take
+  @ComponentAutowired
   protected OutsourcedInvoiceItemService outsourcedInvoiceItemService;
 
   protected void complete(UUID linkedId) {

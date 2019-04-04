@@ -2,8 +2,8 @@ package pico.erp.production.mediator;
 
 import java.util.UUID;
 import java.util.stream.Collectors;
-import kkojaeh.spring.boot.component.Give;
-import kkojaeh.spring.boot.component.Take;
+import kkojaeh.spring.boot.component.ComponentAutowired;
+import kkojaeh.spring.boot.component.ComponentBean;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,19 +30,19 @@ import pico.erp.shared.event.EventPublisher;
 
 @SuppressWarnings("Duplicates")
 @Service
-@Give
+@ComponentBean
 @Transactional
 @Validated
 public class ProductionPlanMediatorServiceLogic implements ProductionPlanMediatorService {
 
 
-  @Take
+  @ComponentAutowired
   protected ProductionPlanDetailService productionPlanDetailService;
 
-  @Take
+  @ComponentAutowired
   protected CompanyService companyService;
 
-  @Take
+  @ComponentAutowired
   protected CompanyAddressService companyAddressService;
 
   @Autowired
@@ -51,7 +51,7 @@ public class ProductionPlanMediatorServiceLogic implements ProductionPlanMediato
   @Autowired
   private EventPublisher eventPublisher;
 
-  @Take
+  @ComponentAutowired
   private ProductionPlanService productionPlanService;
 
   @Autowired

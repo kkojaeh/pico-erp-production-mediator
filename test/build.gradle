@@ -16,30 +16,30 @@ dependencies {
 
   compile("com.github.kkojaeh.pico-erp-shared:test:${sharedVersion}")
 
-  testCompile("com.github.kkojaeh.pico-erp-user:test:${userVersion}")
+  testRuntime("com.github.kkojaeh.pico-erp-user:test:${userVersion}")
 
-  testCompile("com.github.kkojaeh.pico-erp-item:test:${itemVersion}")
+  testRuntime("com.github.kkojaeh.pico-erp-item:test:${itemVersion}")
 
-  testCompile("com.github.kkojaeh.pico-erp-project:test:${projectVersion}")
+  testRuntime("com.github.kkojaeh.pico-erp-project:test:${projectVersion}")
 
-  testCompile("com.github.kkojaeh.pico-erp-company:test:${companyVersion}")
+  testRuntime("com.github.kkojaeh.pico-erp-company:test:${companyVersion}")
 
-  testCompile("com.github.kkojaeh.pico-erp-warehouse:test:${warehouseVersion}")
+  testRuntime("com.github.kkojaeh.pico-erp-warehouse:test:${warehouseVersion}")
 
-  testCompile("com.github.kkojaeh.pico-erp-production-plan:test:${productionPlanVersion}")
+  testRuntime("com.github.kkojaeh.pico-erp-production-plan:test:${productionPlanVersion}")
 
-  testCompile("com.github.kkojaeh.pico-erp-bom:test:${bomVersion}")
+  testRuntime("com.github.kkojaeh.pico-erp-bom:test:${bomVersion}")
 
-  testCompile("com.github.kkojaeh.pico-erp-process:test:${processVersion}")
+  testRuntime("com.github.kkojaeh.pico-erp-process:test:${processVersion}")
 
-  testCompile("com.github.kkojaeh.pico-erp-outsourced-invoice:test:${outsourcedInvoiceVersion}")
+  testRuntime("com.github.kkojaeh.pico-erp-outsourced-invoice:test:${outsourcedInvoiceVersion}")
 
-  testCompile("com.github.kkojaeh.pico-erp-purchase-request:test:${purchaseRequestVersion}")
+  testRuntime("com.github.kkojaeh.pico-erp-purchase-request:test:${purchaseRequestVersion}")
 
-  testCompile("com.github.kkojaeh.pico-erp-outsourcing-request:test:${outsourcingRequestVersion}")
+  testRuntime("com.github.kkojaeh.pico-erp-outsourcing-request:test:${outsourcingRequestVersion}")
 
-  testCompile("com.github.kkojaeh.pico-erp-production-order:test:${productionOrderVersion}")
+  testRuntime("com.github.kkojaeh.pico-erp-production-order:test:${productionOrderVersion}")
 
-  testCompile("com.github.kkojaeh.pico-erp-invoice:test:${invoiceVersion}")
+  testRuntime("com.github.kkojaeh.pico-erp-invoice:test:${invoiceVersion}")
 
 }

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 import javax.validation.constraints.NotNull;
-import kkojaeh.spring.boot.component.Take;
+import kkojaeh.spring.boot.component.ComponentAutowired;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -137,25 +137,25 @@ public interface ProductionPlanDetailMediatorMessages {
   @Component
   class ProductionPlanDetailContext {
 
-    @Take
+    @ComponentAutowired
     protected ProductionOrderService productionOrderService;
 
-    @Take
+    @ComponentAutowired
     protected PurchaseRequestService purchaseRequestService;
 
-    @Take
+    @ComponentAutowired
     protected OutsourcingRequestService outsourcingRequestService;
 
-    @Take
+    @ComponentAutowired
     protected OutsourcingRequestMaterialService outsourcingRequestMaterialService;
 
-    @Take
+    @ComponentAutowired
     protected OutsourcedInvoiceService outsourcedInvoiceService;
 
-    @Take
+    @ComponentAutowired
     protected OutsourcedInvoiceItemService outsourcedInvoiceItemService;
 
-    @Take
+    @ComponentAutowired
     protected ProductionPlanDetailService productionPlanDetailService;
 
   }

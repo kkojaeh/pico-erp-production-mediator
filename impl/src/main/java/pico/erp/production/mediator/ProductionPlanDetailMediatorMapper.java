@@ -1,6 +1,6 @@
 package pico.erp.production.mediator;
 
-import kkojaeh.spring.boot.component.Take;
+import kkojaeh.spring.boot.component.ComponentAutowired;
 import lombok.val;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -22,25 +22,25 @@ import pico.erp.purchase.request.PurchaseRequestService;
 @Mapper
 public abstract class ProductionPlanDetailMediatorMapper {
 
-  @Take
+  @ComponentAutowired
   protected ProductionPlanDetailService productionPlanDetailService;
 
-  @Take
+  @ComponentAutowired
   protected ProductionOrderService productionOrderService;
 
-  @Take
+  @ComponentAutowired
   protected PurchaseRequestService purchaseRequestService;
 
-  @Take
+  @ComponentAutowired
   protected OutsourcingRequestService outsourcingRequestService;
 
-  @Take
+  @ComponentAutowired
   protected OutsourcingRequestMaterialService outsourcingRequestMaterialService;
 
-  @Take
+  @ComponentAutowired
   protected OutsourcedInvoiceService outsourcedInvoiceService;
 
-  @Take
+  @ComponentAutowired
   protected OutsourcedInvoiceItemService outsourcedInvoiceItemService;
 
   public ProductionPlanDetailMediatorEntity jpa(
