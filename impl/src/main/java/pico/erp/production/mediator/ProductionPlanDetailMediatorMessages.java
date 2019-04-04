@@ -4,12 +4,11 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 import javax.validation.constraints.NotNull;
+import kkojaeh.spring.boot.component.ComponentAutowired;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Value;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import pico.erp.outsourced.invoice.OutsourcedInvoiceService;
 import pico.erp.outsourced.invoice.item.OutsourcedInvoiceItemService;
@@ -138,32 +137,25 @@ public interface ProductionPlanDetailMediatorMessages {
   @Component
   class ProductionPlanDetailContext {
 
-    @Lazy
-    @Autowired
+    @ComponentAutowired
     protected ProductionOrderService productionOrderService;
 
-    @Lazy
-    @Autowired
+    @ComponentAutowired
     protected PurchaseRequestService purchaseRequestService;
 
-    @Lazy
-    @Autowired
+    @ComponentAutowired
     protected OutsourcingRequestService outsourcingRequestService;
 
-    @Lazy
-    @Autowired
+    @ComponentAutowired
     protected OutsourcingRequestMaterialService outsourcingRequestMaterialService;
 
-    @Lazy
-    @Autowired
+    @ComponentAutowired
     protected OutsourcedInvoiceService outsourcedInvoiceService;
 
-    @Lazy
-    @Autowired
+    @ComponentAutowired
     protected OutsourcedInvoiceItemService outsourcedInvoiceItemService;
 
-    @Lazy
-    @Autowired
+    @ComponentAutowired
     protected ProductionPlanDetailService productionPlanDetailService;
 
   }

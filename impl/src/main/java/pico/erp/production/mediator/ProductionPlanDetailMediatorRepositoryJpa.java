@@ -44,12 +44,12 @@ public class ProductionPlanDetailMediatorRepositoryJpa implements
 
   @Override
   public void deleteBy(ProductionPlanDetailId id) {
-    repository.delete(id);
+    repository.deleteById(id);
   }
 
   @Override
   public boolean exists(ProductionPlanDetailId id) {
-    return repository.exists(id);
+    return repository.existsById(id);
   }
 
   @Override
@@ -59,7 +59,7 @@ public class ProductionPlanDetailMediatorRepositoryJpa implements
 
   @Override
   public Optional<ProductionPlanDetailMediator> findBy(ProductionPlanDetailId id) {
-    return Optional.ofNullable(repository.findOne(id))
+    return repository.findById(id)
       .map(mapper::jpa);
   }
 
@@ -71,7 +71,7 @@ public class ProductionPlanDetailMediatorRepositoryJpa implements
 
   @Override
   public void update(ProductionPlanDetailMediator mediator) {
-    val entity = repository.findOne(mediator.getProductionPlanDetail().getId());
+    val entity = repository.findById(mediator.getProductionPlanDetail().getId()).get();
     mapper.pass(mapper.jpa(mediator), entity);
     repository.save(entity);
   }

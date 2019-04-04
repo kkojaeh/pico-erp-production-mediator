@@ -1,12 +1,11 @@
 package pico.erp.production.mediator;
 
+import kkojaeh.spring.boot.component.ComponentAutowired;
 import lombok.val;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import pico.erp.outsourced.invoice.OutsourcedInvoiceId;
 import pico.erp.outsourced.invoice.OutsourcedInvoiceService;
 import pico.erp.outsourced.invoice.item.OutsourcedInvoiceItemId;
@@ -23,32 +22,25 @@ import pico.erp.purchase.request.PurchaseRequestService;
 @Mapper
 public abstract class ProductionPlanDetailMediatorMapper {
 
-  @Lazy
-  @Autowired
+  @ComponentAutowired
   protected ProductionPlanDetailService productionPlanDetailService;
 
-  @Lazy
-  @Autowired
+  @ComponentAutowired
   protected ProductionOrderService productionOrderService;
 
-  @Lazy
-  @Autowired
+  @ComponentAutowired
   protected PurchaseRequestService purchaseRequestService;
 
-  @Lazy
-  @Autowired
+  @ComponentAutowired
   protected OutsourcingRequestService outsourcingRequestService;
 
-  @Lazy
-  @Autowired
+  @ComponentAutowired
   protected OutsourcingRequestMaterialService outsourcingRequestMaterialService;
 
-  @Lazy
-  @Autowired
+  @ComponentAutowired
   protected OutsourcedInvoiceService outsourcedInvoiceService;
 
-  @Lazy
-  @Autowired
+  @ComponentAutowired
   protected OutsourcedInvoiceItemService outsourcedInvoiceItemService;
 
   public ProductionPlanDetailMediatorEntity jpa(

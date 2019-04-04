@@ -2,9 +2,10 @@ package pico.erp.production.mediator;
 
 import java.util.UUID;
 import java.util.stream.Collectors;
+import kkojaeh.spring.boot.component.ComponentAutowired;
+import kkojaeh.spring.boot.component.ComponentBean;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -24,51 +25,24 @@ import pico.erp.production.mediator.ProductionPlanMediatorRequests.RecreateReque
 import pico.erp.production.plan.ProductionPlanService;
 import pico.erp.production.plan.detail.ProductionPlanDetailId;
 import pico.erp.production.plan.detail.ProductionPlanDetailService;
-import pico.erp.shared.Public;
 import pico.erp.shared.data.Address;
 import pico.erp.shared.event.EventPublisher;
 
 @SuppressWarnings("Duplicates")
 @Service
-@Public
+@ComponentBean
 @Transactional
 @Validated
 public class ProductionPlanMediatorServiceLogic implements ProductionPlanMediatorService {
 
-  /*@Lazy
-  @Autowired
-  protected ProductionOrderService productionOrderService;
 
-  @Lazy
-  @Autowired
-  protected PurchaseRequestService purchaseRequestService;
-
-  @Lazy
-  @Autowired
-  protected OutsourcingRequestService outsourcingRequestService;
-
-  @Lazy
-  @Autowired
-  protected OutsourcingRequestMaterialService outsourcingRequestMaterialService;
-
-  @Lazy
-  @Autowired
-  protected OutsourcedInvoiceService outsourcedInvoiceService;
-
-  @Lazy
-  @Autowired
-  protected OutsourcedInvoiceItemService outsourcedInvoiceItemService;
-*/
-  @Lazy
-  @Autowired
+  @ComponentAutowired
   protected ProductionPlanDetailService productionPlanDetailService;
 
-  @Lazy
-  @Autowired
+  @ComponentAutowired
   protected CompanyService companyService;
 
-  @Lazy
-  @Autowired
+  @ComponentAutowired
   protected CompanyAddressService companyAddressService;
 
   @Autowired
@@ -77,8 +51,7 @@ public class ProductionPlanMediatorServiceLogic implements ProductionPlanMediato
   @Autowired
   private EventPublisher eventPublisher;
 
-  @Lazy
-  @Autowired
+  @ComponentAutowired
   private ProductionPlanService productionPlanService;
 
   @Autowired
